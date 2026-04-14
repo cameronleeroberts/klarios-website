@@ -223,6 +223,128 @@
     border-radius: 8px;
   }
 
+  /* Burger button */
+  .nav-burger {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 0;
+    backdrop-filter: blur(10px);
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  .nav-burger:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.28);
+  }
+  .nav-burger span {
+    display: block;
+    width: 18px;
+    height: 1.5px;
+    background: #FFFFFF;
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.2s ease;
+  }
+  body.nav-drawer-open .nav-burger span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  body.nav-drawer-open .nav-burger span:nth-child(2) { opacity: 0; }
+  body.nav-drawer-open .nav-burger span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* Burger drawer overlay */
+  .nav-drawer {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 8, 20, 0);
+    z-index: 200;
+    pointer-events: none;
+    transition: background 0.35s ease;
+  }
+  body.nav-drawer-open { overflow: hidden; }
+  body.nav-drawer-open .nav-drawer {
+    background: rgba(10, 8, 20, 0.6);
+    pointer-events: auto;
+    backdrop-filter: blur(8px);
+  }
+  .nav-drawer-panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(420px, 86%);
+    background: linear-gradient(180deg, #1A1525 0%, #241A35 60%, #2E1B45 100%);
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    padding: 96px 44px 44px 44px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  body.nav-drawer-open .nav-drawer-panel { transform: translateX(0); }
+  .nav-drawer-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 18px;
+  }
+  .nav-drawer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 40px;
+  }
+  .nav-drawer-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 34px;
+    line-height: 1;
+    color: #FFFFFF;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    letter-spacing: -0.02em;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+  }
+  .nav-drawer-link:hover {
+    color: #C4B5FD;
+    padding-left: 6px;
+  }
+  .nav-drawer-link-num {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.08em;
+  }
+  .nav-drawer-cta {
+    margin-top: auto;
+    padding: 16px 22px;
+    background: var(--gradient);
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 20px 50px -15px rgba(139, 92, 246, 0.55);
+  }
+  .nav-drawer-meta {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 18px;
+  }
+
   /* ============================================================
      HERO — dark violet immersive
      ============================================================ */
@@ -465,8 +587,13 @@
      HERO ANIMATED DASHBOARD + POP-UPS
      ============================================================ */
   .hero {
-    padding-bottom: 340px;
+    min-height: auto;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 160px 32px 360px 32px;
   }
+  .hero-content { margin: 0 auto; width: 100%; }
   .hero-dashboard {
     position: absolute;
     bottom: 90px;
@@ -3468,7 +3595,7 @@
     .nav-inner { padding: 0 20px; }
     .nav-brand { font-size: 22px; }
 
-    .hero { padding: 72px 0 60px 0; }
+    .hero { padding: 100px 0 260px 0; }
     .hero-content { padding: 0 24px; }
     .wedge-grid, .feature-row, .feature-row.reverse { grid-template-columns: 1fr; gap: 40px; }
     .feature-row.reverse .feature-text { order: 1; }
@@ -3515,7 +3642,7 @@
     .nav-cta { padding: 7px 14px; font-size: 13px; }
 
     /* HERO */
-    .hero { padding: 56px 0 48px 0; }
+    .hero { padding: 84px 0 240px 0; }
     .hero-content { padding: 0 20px; }
     .hero-pill { padding: 6px 14px; font-size: 12px; margin-bottom: 22px; }
     .hero-wordmark { font-size: 64px; line-height: 0.92; letter-spacing: -0.035em; }
@@ -3756,9 +3883,43 @@
     </div>
     <div class="nav-right">
       <a href="#register" class="nav-cta">Register interest</a>
+      <button class="nav-burger" aria-label="Open menu" onclick="document.body.classList.toggle('nav-drawer-open')">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </div>
 </nav>
+
+<!-- Burger drawer -->
+<div class="nav-drawer" onclick="if(event.target===this)document.body.classList.remove('nav-drawer-open')">
+  <div class="nav-drawer-panel">
+    <div class="nav-drawer-label">Jump to section</div>
+    <nav class="nav-drawer-links">
+      <a href="#home-tile" class="nav-drawer-link" onclick="document.body.classList.remove('nav-drawer-open')">
+        Product <span class="nav-drawer-link-num">01</span>
+      </a>
+      <a href="#sprints" class="nav-drawer-link" onclick="document.body.classList.remove('nav-drawer-open')">
+        Sprints <span class="nav-drawer-link-num">02</span>
+      </a>
+      <a href="#bento" class="nav-drawer-link" onclick="document.body.classList.remove('nav-drawer-open')">
+        Features <span class="nav-drawer-link-num">03</span>
+      </a>
+      <a href="#agents" class="nav-drawer-link" onclick="document.body.classList.remove('nav-drawer-open')">
+        Agents <span class="nav-drawer-link-num">04</span>
+      </a>
+      <a href="#pricing" class="nav-drawer-link" onclick="document.body.classList.remove('nav-drawer-open')">
+        Pricing <span class="nav-drawer-link-num">05</span>
+      </a>
+      <a href="#faq" class="nav-drawer-link" onclick="document.body.classList.remove('nav-drawer-open')">
+        FAQ <span class="nav-drawer-link-num">06</span>
+      </a>
+    </nav>
+    <a href="#register" class="nav-drawer-cta" onclick="document.body.classList.remove('nav-drawer-open')">Register your interest →</a>
+    <div class="nav-drawer-meta">klarios.io · Apr 2026 · Private Beta</div>
+  </div>
+</div>
 
 <!-- ============================================================
      HERO
@@ -4909,7 +5070,7 @@
 <!-- ============================================================
      AGENT WORKFORCE
      ============================================================ -->
-<section class="workforce">
+<section class="workforce" id="agents">
   <div class="container-wide">
     <div class="workforce-head">
       <div class="eyebrow" style="margin-left:auto;margin-right:auto;">Your agent workforce</div>
@@ -5428,6 +5589,11 @@
       }
     });
   })();
+
+  // Burger drawer: Escape to close + scroll lock
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') document.body.classList.remove('nav-drawer-open');
+  });
 </script>
 
 </body>
