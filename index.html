@@ -461,6 +461,381 @@
   .nav { border-bottom: none; }
   .hero + * { background: #FFFFFF; }
 
+  /* ============================================================
+     HERO ANIMATED DASHBOARD + POP-UPS
+     ============================================================ */
+  .hero {
+    padding-bottom: 340px;
+  }
+  .hero-dashboard {
+    position: absolute;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(900px, calc(100% - 96px));
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px 18px 0 0;
+    backdrop-filter: blur(20px);
+    padding: 24px 28px;
+    z-index: 2;
+    box-shadow: 0 -20px 80px -20px rgba(139, 92, 246, 0.25);
+  }
+  .hero-dash-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  }
+  .hero-dash-title {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 22px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: #FFFFFF;
+    margin-bottom: 3px;
+  }
+  .hero-dash-sub {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .hero-dash-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    background: rgba(139, 92, 246, 0.14);
+    border: 1px solid rgba(139, 92, 246, 0.32);
+    border-radius: 6px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: #C4B5FD;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .hero-dash-live-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: #C4B5FD;
+    box-shadow: 0 0 8px #C4B5FD;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  .hero-dash-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .hero-dash-metric {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .hero-dash-metric-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+  .hero-dash-metric-val {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 26px;
+    color: #FFFFFF;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .hero-dash-metric-val .tick {
+    display: inline-block;
+    animation: heroTick 4s ease-in-out infinite;
+  }
+  @keyframes heroTick {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.55; }
+  }
+  .hero-dash-metric-delta {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+  .hero-dash-metric-delta.up { color: #A7F3D0; }
+  .hero-dash-metric-delta.down { color: #FCA5A5; }
+
+  /* Hero pop-ups */
+  .hero-popup {
+    position: absolute;
+    background: rgba(10, 10, 20, 0.88);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(139, 92, 246, 0.42);
+    border-radius: 12px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    min-width: 280px;
+    max-width: 320px;
+    box-shadow: 0 20px 50px -15px rgba(139, 92, 246, 0.55);
+    opacity: 0;
+    z-index: 5;
+  }
+  .hero-popup-pill {
+    font-family: 'Geist Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 3px 7px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .hpp-h { background: rgba(239, 68, 68, 0.22); color: #FCA5A5; }
+  .hpp-m { background: rgba(245, 158, 11, 0.22); color: #FCD34D; }
+  .hpp-l { background: rgba(59, 130, 246, 0.22); color: #93C5FD; }
+  .hpp-ok { background: rgba(16, 185, 129, 0.22); color: #6EE7B7; }
+  .hero-popup-body { flex: 1; }
+  .hero-popup-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 3px;
+    line-height: 1.3;
+  }
+  .hero-popup-sub {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.04em;
+  }
+
+  .hero-popup.hpop1 {
+    top: 140px;
+    left: 6%;
+    animation: heroPop1 12s ease-in-out infinite;
+  }
+  @keyframes heroPop1 {
+    0%, 2% { opacity: 0; transform: translateX(-20px); }
+    6%, 30% { opacity: 1; transform: translateX(0); }
+    34%, 100% { opacity: 0; transform: translateX(-20px); }
+  }
+  .hero-popup.hpop2 {
+    top: 220px;
+    right: 6%;
+    animation: heroPop2 12s ease-in-out infinite;
+  }
+  @keyframes heroPop2 {
+    0%, 32% { opacity: 0; transform: translateX(20px); }
+    36%, 60% { opacity: 1; transform: translateX(0); }
+    64%, 100% { opacity: 0; transform: translateX(20px); }
+  }
+  .hero-popup.hpop3 {
+    top: 340px;
+    left: 8%;
+    animation: heroPop3 12s ease-in-out infinite;
+  }
+  @keyframes heroPop3 {
+    0%, 62% { opacity: 0; transform: translateY(20px); }
+    66%, 90% { opacity: 1; transform: translateY(0); }
+    94%, 100% { opacity: 0; transform: translateY(20px); }
+  }
+
+  /* Move hero-bottom out of the way since dashboard now sits at bottom */
+  .hero-bottom { bottom: 24px; }
+
+  @media (max-width: 900px) {
+    .hero { padding-bottom: 240px; }
+    .hero-dashboard { width: calc(100% - 40px); padding: 16px 18px; }
+    .hero-dash-head { margin-bottom: 12px; }
+    .hero-dash-title { font-size: 17px; }
+    .hero-dash-metrics { gap: 6px; }
+    .hero-dash-metric { padding: 10px 12px; }
+    .hero-dash-metric-val { font-size: 18px; }
+    .hero-dash-metric-label { font-size: 9px; }
+    .hero-dash-metric-delta { font-size: 9px; }
+    .hero-popup { display: none; }
+  }
+
+  /* ============================================================
+     BENTO LIVE METRICS (Option B animations on the landing bento)
+     ============================================================ */
+  .bento-card.live {
+    background: #0A0A0A;
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    overflow: hidden;
+  }
+  .bento-card.live::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 50% 40% at 30% 30%, rgba(139, 92, 246, 0.4), transparent),
+      radial-gradient(ellipse 40% 30% at 70% 70%, rgba(196, 181, 253, 0.22), transparent);
+    pointer-events: none;
+  }
+  .bento-card.live > * { position: relative; z-index: 1; }
+  .bento-card.live .bento-eyebrow { color: #C4B5FD; }
+  .bento-card.live .bento-title { color: #FFFFFF; }
+  .bento-card.live .bento-desc { color: rgba(255, 255, 255, 0.6); }
+
+  .blive-feed { margin-top: 14px; }
+  .blive-row {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .blive-row-pill {
+    font-family: 'Geist Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 3px 7px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+  .blive-row-title {
+    flex: 1;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .blive-row-owner {
+    font-family: 'Geist Mono', monospace;
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.04em;
+  }
+  .blive-row.r1 { animation: bliveRow 10s ease-in-out infinite; }
+  .blive-row.r2 { animation: bliveRow 10s ease-in-out infinite 1s; }
+  .blive-row.r3 { animation: bliveRow 10s ease-in-out infinite 2s; }
+  @keyframes bliveRow {
+    0%, 10% { opacity: 0; transform: translateY(8px); }
+    18%, 82% { opacity: 1; transform: translateY(0); }
+    90%, 100% { opacity: 0; transform: translateY(-4px); }
+  }
+
+  /* Big live counter on a small card */
+  .blive-metric-big {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 52px;
+    line-height: 1;
+    color: #FFFFFF;
+    letter-spacing: -0.025em;
+    margin-top: 18px;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .blive-counter {
+    display: inline-block;
+    animation: bliveCount 4s ease-in-out infinite;
+  }
+  @keyframes bliveCount {
+    0%, 100% { color: #FFFFFF; }
+    50% { color: #C4B5FD; }
+  }
+  .blive-metric-delta {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    color: #A7F3D0;
+    margin-top: 6px;
+  }
+  .blive-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 5px;
+    height: 72px;
+    margin-top: 22px;
+  }
+  .blive-bar {
+    flex: 1;
+    background: linear-gradient(180deg, var(--violet-a), var(--violet-b));
+    border-radius: 3px 3px 0 0;
+    transform-origin: bottom;
+    animation: bliveGrow 4s ease-in-out infinite;
+  }
+  .blive-bar.bb1 { animation-delay: 0s; }
+  .blive-bar.bb2 { animation-delay: 0.15s; }
+  .blive-bar.bb3 { animation-delay: 0.3s; }
+  .blive-bar.bb4 { animation-delay: 0.45s; }
+  .blive-bar.bb5 { animation-delay: 0.6s; }
+  .blive-bar.bb6 { animation-delay: 0.75s; }
+  .blive-bar.bb7 { animation-delay: 0.9s; }
+  .blive-bar.bb8 { animation-delay: 1.05s; }
+  @keyframes bliveGrow {
+    0%, 100% { transform: scaleY(0.45); }
+    50% { transform: scaleY(1); }
+  }
+
+  /* Agents working ping */
+  .blive-agents { margin-top: 14px; }
+  .blive-agent {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    margin-bottom: 6px;
+  }
+  .blive-agent:last-child { margin-bottom: 0; }
+  .blive-agent-av {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--gradient);
+    position: relative;
+    flex-shrink: 0;
+  }
+  .blive-agent-av::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid #8B5CF6;
+    opacity: 0;
+    animation: bliveAgentPing 3s ease-out infinite;
+  }
+  .blive-agent:nth-child(2) .blive-agent-av { background: linear-gradient(135deg, #F472B6, #DB2777); }
+  .blive-agent:nth-child(2) .blive-agent-av::after { border-color: #F472B6; animation-delay: 1s; }
+  .blive-agent:nth-child(3) .blive-agent-av { background: linear-gradient(135deg, #22D3EE, #0891B2); }
+  .blive-agent:nth-child(3) .blive-agent-av::after { border-color: #22D3EE; animation-delay: 2s; }
+  @keyframes bliveAgentPing {
+    0% { opacity: 0.8; transform: scale(1); }
+    80%, 100% { opacity: 0; transform: scale(1.8); }
+  }
+  .blive-agent-name {
+    font-size: 12px;
+    color: #FFFFFF;
+    font-weight: 500;
+  }
+  .blive-agent-task {
+    font-family: 'Geist Mono', monospace;
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.45);
+    margin-top: 2px;
+  }
+  .blive-agent-task::after {
+    content: '';
+    animation: bliveTyping 2s steps(4) infinite;
+  }
+  @keyframes bliveTyping {
+    0% { content: ''; }
+    25% { content: '.'; }
+    50% { content: '..'; }
+    75%, 100% { content: '...'; }
+  }
+
   /* Hero live dashboard mockup */
   .hero-mockup-wrap {
     max-width: 1180px;
@@ -3395,6 +3770,65 @@
     <div class="hero-meta">NO CREDIT CARD · LIVE IN 30 MINUTES · CANCEL ANYTIME</div>
   </div>
 
+  <!-- Floating cycling pop-ups -->
+  <div class="hero-popup hpop1">
+    <span class="hero-popup-pill hpp-h">HIGH</span>
+    <div class="hero-popup-body">
+      <div class="hero-popup-title">18 payment failures detected</div>
+      <div class="hero-popup-sub">→ RETENTION AGENT · 06:12</div>
+    </div>
+  </div>
+  <div class="hero-popup hpop2">
+    <span class="hero-popup-pill hpp-m">MED</span>
+    <div class="hero-popup-body">
+      <div class="hero-popup-title">Meta CAC up 34% week-on-week</div>
+      <div class="hero-popup-sub">→ PAID MEDIA AGENT · 06:18</div>
+    </div>
+  </div>
+  <div class="hero-popup hpop3">
+    <span class="hero-popup-pill hpp-ok">DONE</span>
+    <div class="hero-popup-body">
+      <div class="hero-popup-title">Weekly board digest ready</div>
+      <div class="hero-popup-sub">→ CHIEF OF STAFF · 06:24</div>
+    </div>
+  </div>
+
+  <!-- Floating frosted dashboard -->
+  <div class="hero-dashboard">
+    <div class="hero-dash-head">
+      <div>
+        <div class="hero-dash-title">Today's signal</div>
+        <div class="hero-dash-sub">Tuesday · 06:30 GST</div>
+      </div>
+      <div class="hero-dash-live">
+        <span class="hero-dash-live-dot"></span>
+        LIVE
+      </div>
+    </div>
+    <div class="hero-dash-metrics">
+      <div class="hero-dash-metric">
+        <div class="hero-dash-metric-label">MRR</div>
+        <div class="hero-dash-metric-val">$<span class="tick">64,280</span></div>
+        <div class="hero-dash-metric-delta up">↑ 12.4%</div>
+      </div>
+      <div class="hero-dash-metric">
+        <div class="hero-dash-metric-label">Pipeline</div>
+        <div class="hero-dash-metric-val">$<span class="tick">248k</span></div>
+        <div class="hero-dash-metric-delta up">↑ 8.1%</div>
+      </div>
+      <div class="hero-dash-metric">
+        <div class="hero-dash-metric-label">CAC</div>
+        <div class="hero-dash-metric-val">$<span class="tick">112</span></div>
+        <div class="hero-dash-metric-delta down">↓ 3.2%</div>
+      </div>
+      <div class="hero-dash-metric">
+        <div class="hero-dash-metric-label">Churn</div>
+        <div class="hero-dash-metric-val"><span class="tick">2.4</span>%</div>
+        <div class="hero-dash-metric-delta up">↓ 0.6%</div>
+      </div>
+    </div>
+  </div>
+
   <div class="hero-bottom">
     <div class="hero-url">
       <span class="hero-url-dot"></span>
@@ -3826,53 +4260,76 @@
     </div>
 
     <div class="bento">
-      <!-- Big image tile -->
-      <div class="bento-card image-tile wide tall">
-        <div class="bento-eyebrow">THE HOME TILE</div>
+      <!-- Big tile (LIVE: cycling brief feed) -->
+      <div class="bento-card wide tall live">
+        <div class="bento-eyebrow">THE HOME TILE · LIVE</div>
         <div class="bento-title">Everything<br>in one view.</div>
-        <div class="bento-desc">Four KPI cards, today's brief written by Klarios, what your agents are working on right now, what shipped overnight. Nothing else.</div>
-        <div class="bento-visual">
-          <div class="bv-brief">
-            <div class="bv-brief-row">
-              <span class="bv-brief-pill pp-h">HIGH</span>
-              <span class="bv-brief-text">CPM regression on Summer Hero</span>
+        <div class="bento-desc">Four KPI cards, today's brief, what your agents are working on right now, what shipped overnight. Nothing else.</div>
+        <div class="blive-feed">
+          <div class="blive-row r1">
+            <span class="blive-row-pill hpp-h">HIGH</span>
+            <div class="blive-row-title">CPM regression on Summer Hero</div>
+            <div class="blive-row-owner">PAID MEDIA</div>
+          </div>
+          <div class="blive-row r2">
+            <span class="blive-row-pill hpp-m">MED</span>
+            <div class="blive-row-title">LinkedIn carousel ready to post</div>
+            <div class="blive-row-owner">CONTENT</div>
+          </div>
+          <div class="blive-row r3">
+            <span class="blive-row-pill hpp-ok">DONE</span>
+            <div class="blive-row-title">12 leads qualified overnight</div>
+            <div class="blive-row-owner">SALES</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sprints (LIVE: agents working) -->
+      <div class="bento-card half live">
+        <div class="bento-eyebrow">SPRINTS · LIVE</div>
+        <div class="bento-title">Your agents,<br>working now.</div>
+        <div class="bento-desc">Open → Strategy → Execute → Shipped. Every task travels the same rails.</div>
+        <div class="blive-agents">
+          <div class="blive-agent">
+            <div class="blive-agent-av"></div>
+            <div>
+              <div class="blive-agent-name">Retention Agent</div>
+              <div class="blive-agent-task">Drafting 18 recovery emails</div>
             </div>
-            <div class="bv-brief-row">
-              <span class="bv-brief-pill pp-m">MED</span>
-              <span class="bv-brief-text">LinkedIn carousel ready</span>
+          </div>
+          <div class="blive-agent">
+            <div class="blive-agent-av"></div>
+            <div>
+              <div class="blive-agent-name">Paid Media Agent</div>
+              <div class="blive-agent-task">Pausing underperformers</div>
             </div>
-            <div class="bv-brief-row">
-              <span class="bv-brief-pill pp-l">LOW</span>
-              <span class="bv-brief-text">12 leads qualified overnight</span>
+          </div>
+          <div class="blive-agent">
+            <div class="blive-agent-av"></div>
+            <div>
+              <div class="blive-agent-name">Chief of Staff</div>
+              <div class="blive-agent-task">Compiling board digest</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Sprints -->
-      <div class="bento-card half">
-        <div class="bento-eyebrow">SPRINTS</div>
-        <div class="bento-title">Agent kanban.</div>
-        <div class="bento-desc">Open → Strategy → Comment → Execute → Shipped. Every task travels the same rails.</div>
-      </div>
-
-      <!-- Analytics -->
-      <div class="bento-card half">
-        <div class="bento-eyebrow">ANALYTICS</div>
+      <!-- Analytics (LIVE: counter + bars) -->
+      <div class="bento-card half live">
+        <div class="bento-eyebrow">ANALYTICS · LIVE</div>
         <div class="bento-title">5 tabs. One story.</div>
-        <div class="bento-desc">Revenue, Marketing, Audience, Product, Finance. All your connections, one frame.</div>
-        <div class="bento-visual">
-          <div class="bv-bars">
-            <div class="bv-bar" style="height:28%;"></div>
-            <div class="bv-bar" style="height:44%;"></div>
-            <div class="bv-bar" style="height:38%;"></div>
-            <div class="bv-bar" style="height:62%;"></div>
-            <div class="bv-bar" style="height:54%;"></div>
-            <div class="bv-bar" style="height:78%;"></div>
-            <div class="bv-bar" style="height:70%;"></div>
-            <div class="bv-bar" style="height:92%;"></div>
-            <div class="bv-bar" style="height:100%;"></div>
-          </div>
+        <div class="bento-desc">Revenue, Marketing, Audience, Product, Finance. One frame.</div>
+        <div class="blive-metric-big">$<span class="blive-counter">64,280</span></div>
+        <div class="blive-metric-delta">↑ 12.4% this week · MRR</div>
+        <div class="blive-bars">
+          <div class="blive-bar bb1" style="height:32%;"></div>
+          <div class="blive-bar bb2" style="height:48%;"></div>
+          <div class="blive-bar bb3" style="height:40%;"></div>
+          <div class="blive-bar bb4" style="height:62%;"></div>
+          <div class="blive-bar bb5" style="height:56%;"></div>
+          <div class="blive-bar bb6" style="height:78%;"></div>
+          <div class="blive-bar bb7" style="height:70%;"></div>
+          <div class="blive-bar bb8" style="height:94%;"></div>
         </div>
       </div>
 
