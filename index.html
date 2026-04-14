@@ -1703,7 +1703,22 @@
   .bento-card.wide { grid-column: span 4; }
   .bento-card.half { grid-column: span 3; }
   .bento-card.third { grid-column: span 2; }
+  .bento-card.full { grid-column: span 6; }
   .bento-card.tall { grid-row: span 2; }
+  .bento-card.bento-split {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 48px;
+    padding: 44px 48px;
+    align-items: center;
+  }
+  .bento-card.bento-split .bento-split-left { display: flex; flex-direction: column; justify-content: center; }
+  .bento-card.bento-split .bento-title { font-size: 54px; line-height: 1; letter-spacing: -0.025em; }
+  .bento-card.bento-split .bento-desc { max-width: 440px; margin-top: 12px; }
+  .bento-card.bento-split .blive-feed { margin-top: 0; }
+  .bento-card.bento-split .blive-row { padding: 16px 18px; }
+  .bento-card.bento-split .blive-row-title { font-size: 14px; }
+  .bento-card.bento-split .blive-row-owner { font-size: 10px; }
   .bento-card.image-tile {
     background: #1A1A1A;
     color: #FFFFFF;
@@ -3438,6 +3453,7 @@
     .bento-card.wide { grid-column: span 4; }
     .bento-card.half { grid-column: span 2; }
     .bento-card.third { grid-column: span 2; }
+    .bento-card.full { grid-column: span 4; }
     .int-wall { grid-template-columns: repeat(5, 1fr); }
     .org-chiefs, .org-subs { grid-template-columns: repeat(3, 1fr); }
     .org-chiefs::after { display: none; }
@@ -3464,8 +3480,10 @@
     .sprints-grid, .math-grid, .pricing-grid, .faq-grid { grid-template-columns: 1fr; }
     .metric-grid, .an-metric-grid, .home-metric-4 { grid-template-columns: repeat(2, 1fr); }
     .bento { grid-template-columns: 1fr; }
-    .bento-card.wide, .bento-card.half, .bento-card.third { grid-column: span 1; }
+    .bento-card.wide, .bento-card.half, .bento-card.third, .bento-card.full { grid-column: span 1; }
     .bento-card.tall { grid-row: span 1; }
+    .bento-card.bento-split { grid-template-columns: 1fr; gap: 24px; padding: 28px; }
+    .bento-card.bento-split .bento-title { font-size: 36px; }
     .int-wall { grid-template-columns: repeat(3, 1fr); }
     .day-grid::before { left: 0; }
     .day-step { grid-template-columns: 1fr; gap: 8px; }
@@ -4260,26 +4278,30 @@
     </div>
 
     <div class="bento">
-      <!-- Big tile (LIVE: cycling brief feed) -->
-      <div class="bento-card wide tall live">
-        <div class="bento-eyebrow">THE HOME TILE · LIVE</div>
-        <div class="bento-title">Everything<br>in one view.</div>
-        <div class="bento-desc">Four KPI cards, today's brief, what your agents are working on right now, what shipped overnight. Nothing else.</div>
-        <div class="blive-feed">
-          <div class="blive-row r1">
-            <span class="blive-row-pill hpp-h">HIGH</span>
-            <div class="blive-row-title">CPM regression on Summer Hero</div>
-            <div class="blive-row-owner">PAID MEDIA</div>
-          </div>
-          <div class="blive-row r2">
-            <span class="blive-row-pill hpp-m">MED</span>
-            <div class="blive-row-title">LinkedIn carousel ready to post</div>
-            <div class="blive-row-owner">CONTENT</div>
-          </div>
-          <div class="blive-row r3">
-            <span class="blive-row-pill hpp-ok">DONE</span>
-            <div class="blive-row-title">12 leads qualified overnight</div>
-            <div class="blive-row-owner">SALES</div>
+      <!-- Full-width hero tile (LIVE: cycling brief feed) -->
+      <div class="bento-card full live bento-split">
+        <div class="bento-split-left">
+          <div class="bento-eyebrow">THE HOME TILE · LIVE</div>
+          <div class="bento-title">Everything<br>in one view.</div>
+          <div class="bento-desc">Four KPI cards, today's brief, what your agents are working on right now, what shipped overnight. Nothing else.</div>
+        </div>
+        <div class="bento-split-right">
+          <div class="blive-feed">
+            <div class="blive-row r1">
+              <span class="blive-row-pill hpp-h">HIGH</span>
+              <div class="blive-row-title">CPM regression on Summer Hero</div>
+              <div class="blive-row-owner">PAID MEDIA</div>
+            </div>
+            <div class="blive-row r2">
+              <span class="blive-row-pill hpp-m">MED</span>
+              <div class="blive-row-title">LinkedIn carousel ready to post</div>
+              <div class="blive-row-owner">CONTENT</div>
+            </div>
+            <div class="blive-row r3">
+              <span class="blive-row-pill hpp-ok">DONE</span>
+              <div class="blive-row-title">12 leads qualified overnight</div>
+              <div class="blive-row-owner">SALES</div>
+            </div>
           </div>
         </div>
       </div>
