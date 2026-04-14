@@ -3557,6 +3557,50 @@
   }
   .price-solo-ft li strong { color: #FFFFFF; font-weight: 500; }
 
+  /* Price card: pitch line + numbered blocks */
+  .price-solo-pitch {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 22px;
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+    color: rgba(255, 255, 255, 0.88);
+    margin-bottom: 36px;
+    max-width: 580px;
+  }
+  .price-solo-blocks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .price-solo-block {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 24px 24px 22px 24px;
+    position: relative;
+  }
+  .price-solo-block-num {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 28px;
+    line-height: 1;
+    color: #C4B5FD;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+  .price-solo-block-name {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 22px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+  }
+  .price-solo-block-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.62);
+  }
+
   .price-notes {
     max-width: 920px;
     margin: 0 auto;
@@ -4072,6 +4116,12 @@
     .price-solo-unit { font-size: 15px; }
     .price-solo-cta { font-size: 15px; padding: 16px 20px; }
     .price-solo-ft li { font-size: 13px; padding: 8px 0 8px 22px; }
+    .price-solo-pitch { font-size: 18px; margin-bottom: 28px; }
+    .price-solo-blocks { grid-template-columns: 1fr; gap: 10px; }
+    .price-solo-block { padding: 20px 22px; }
+    .price-solo-block-num { font-size: 22px; margin-bottom: 8px; }
+    .price-solo-block-name { font-size: 18px; }
+    .price-solo-block-desc { font-size: 12px; }
 
     /* STACK GROUPS */
     .stack-group { margin-bottom: 40px; }
@@ -4821,19 +4871,18 @@
       <!-- Integrations -->
       <div class="bento-card half">
         <div class="bento-eyebrow">CONNECTIONS</div>
-        <div class="bento-title">15+ tools,<br>one OAuth each.</div>
-        <div class="bento-desc">Meta, LinkedIn, Xero, Stripe, Calendly, Mixpanel, GSC, Notion, and more.</div>
+        <div class="bento-title">Your stack,<br>on Klarios rails.</div>
+        <div class="bento-desc">Meta Ads, Xero, Stripe, LinkedIn, Instagram, Search Console, Mixpanel, GitHub, Calendly. One OAuth each.</div>
         <div class="bento-visual">
           <div class="bv-integrations">
             <div class="bv-int tl-meta">M</div>
-            <div class="bv-int tl-li">in</div>
-            <div class="bv-int tl-stripe">S</div>
             <div class="bv-int tl-xero">X</div>
-            <div class="bv-int tl-hubspot">H</div>
-            <div class="bv-int tl-mixpanel">MX</div>
-            <div class="bv-int tl-notion">N</div>
-            <div class="bv-int tl-slack">#</div>
+            <div class="bv-int tl-stripe">S</div>
+            <div class="bv-int tl-li">in</div>
+            <div class="bv-int tl-ig">IG</div>
             <div class="bv-int tl-gsc">G</div>
+            <div class="bv-int tl-mixpanel">MX</div>
+            <div class="bv-int tl-gh">GH</div>
             <div class="bv-int tl-calendly">C</div>
           </div>
         </div>
@@ -5680,16 +5729,35 @@
         <div class="price-solo-sub">Flat. One tier. No per-seat. No upsell ladder.</div>
         <a href="#register" class="price-solo-cta">Book a Klarios walkthrough →</a>
         <div class="price-solo-meta">30 MINUTES · CAMERON · NO PITCH DECK</div>
+
         <div class="price-solo-div"></div>
-        <div class="price-solo-ft-t">What's inside</div>
-        <ul class="price-solo-ft">
-          <li><strong>Klarios shell</strong> — reads every connected tool overnight and writes the morning brief</li>
-          <li><strong>Seven specialist agents</strong> — Paid Media, SEO, Designer, Sales Manager, Tech Lead, Finance Manager, Legal</li>
-          <li><strong>Native CRM</strong> — every form, every Calendly booking, every lead tracked by status</li>
-          <li><strong>Website + CMS</strong> — Klarios hosts your marketing site, SEO and Designer agents edit directly</li>
-          <li><strong>Sprints + audit trail</strong> — every agent action logged, every decision traceable</li>
-          <li><strong>All integrations</strong> — Meta Ads, Xero, GSC, LinkedIn, Instagram, Mixpanel, GitHub, Calendly, WhatsApp</li>
-        </ul>
+
+        <div class="price-solo-pitch">
+          You're paying someone $3k to $10k a month to run ops. Klarios does that job, on flat pricing, with a full audit trail, and it never calls in sick.
+        </div>
+
+        <div class="price-solo-blocks">
+          <div class="price-solo-block">
+            <div class="price-solo-block-num">1.</div>
+            <div class="price-solo-block-name">Klarios writes your morning brief.</div>
+            <div class="price-solo-block-desc">The shell reads every connected tool overnight and hands you the three actions that matter today, with the draft work already produced. You direct, you don't draft.</div>
+          </div>
+          <div class="price-solo-block">
+            <div class="price-solo-block-num">2.</div>
+            <div class="price-solo-block-name">Seven specialist agents ship the work.</div>
+            <div class="price-solo-block-desc">Paid Media runs your ads. SEO rewrites your pages. Designer ships the creative. Sales Manager owns the pipeline. Tech Lead reviews the code. Finance Manager closes the books. Legal drafts the contracts. All in one flat bill.</div>
+          </div>
+          <div class="price-solo-block">
+            <div class="price-solo-block-num">3.</div>
+            <div class="price-solo-block-name">Klarios owns the ops stack.</div>
+            <div class="price-solo-block-desc">Native CRM, native website and CMS, native task engine, native audit trail. Connected to Meta Ads, Xero, Stripe, GSC, LinkedIn, Instagram, Mixpanel, GitHub, Calendly. No Zapier tax. No fifth vendor.</div>
+          </div>
+          <div class="price-solo-block">
+            <div class="price-solo-block-num">4.</div>
+            <div class="price-solo-block-name">Every decision is traceable.</div>
+            <div class="price-solo-block-desc">Every agent action, every approval, every rejection logged. If Paid Media shifted a budget at 02:14, you can see exactly why, when, and what it moved.</div>
+          </div>
+        </div>
       </div>
     </div>
 
