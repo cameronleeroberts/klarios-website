@@ -155,13 +155,25 @@
      NAV
      ============================================================ */
   .nav {
-    position: sticky;
+    position: absolute;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 100;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
+    background: transparent;
+    backdrop-filter: none;
+    border-bottom: none;
   }
+  .nav .nav-brand { color: #FFFFFF; }
+  .nav .nav-link { color: rgba(255, 255, 255, 0.7); }
+  .nav .nav-link:hover { color: #FFFFFF; }
+  .nav .nav-cta {
+    background: rgba(255, 255, 255, 0.08);
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+  }
+  .nav .nav-cta:hover { background: rgba(255, 255, 255, 0.14); }
   .nav-inner {
     max-width: 1280px;
     margin: 0 auto;
@@ -209,55 +221,119 @@
   }
 
   /* ============================================================
-     HERO
+     HERO — dark violet immersive
      ============================================================ */
   .hero {
-    padding: 100px 0 80px 0;
-    text-align: center;
     position: relative;
+    min-height: 88vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(135deg, #1A1525 0%, #241A35 35%, #2E1B45 65%, #3D1A4F 100%);
+    color: #FFFFFF;
     overflow: hidden;
+    padding: 120px 32px 100px 32px;
   }
-  .hero-glow {
+  .hero::before {
+    content: '';
     position: absolute;
-    top: -200px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1200px;
-    height: 800px;
+    inset: 0;
     background:
-      radial-gradient(ellipse 50% 40% at 40% 30%, rgba(139, 92, 246, 0.15), transparent 60%),
-      radial-gradient(ellipse 40% 30% at 70% 50%, rgba(196, 181, 253, 0.2), transparent 60%);
-    filter: blur(60px);
+      radial-gradient(ellipse 45% 50% at 18% 25%, rgba(139, 92, 246, 0.55), transparent 60%),
+      radial-gradient(ellipse 40% 45% at 82% 72%, rgba(244, 114, 182, 0.32), transparent 65%),
+      radial-gradient(ellipse 35% 35% at 60% 50%, rgba(196, 181, 253, 0.18), transparent 70%),
+      radial-gradient(ellipse 25% 25% at 50% 15%, rgba(139, 92, 246, 0.22), transparent 70%);
     pointer-events: none;
     z-index: 0;
   }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Floating particles */
+  .hero-particle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent 60%);
+    filter: blur(1px);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .hp1 { width: 6px; height: 6px; top: 18%; left: 14%; opacity: 0.5; animation: drift 22s ease-in-out infinite; }
+  .hp2 { width: 4px; height: 4px; top: 32%; left: 82%; opacity: 0.4; animation: drift 28s ease-in-out infinite 2s; }
+  .hp3 { width: 8px; height: 8px; top: 68%; left: 18%; opacity: 0.3; animation: drift 26s ease-in-out infinite 1s; }
+  .hp4 { width: 5px; height: 5px; top: 78%; left: 72%; opacity: 0.5; animation: drift 24s ease-in-out infinite 3s; }
+  .hp5 { width: 3px; height: 3px; top: 45%; left: 8%; opacity: 0.6; animation: drift 30s ease-in-out infinite; }
+  .hp6 { width: 7px; height: 7px; top: 25%; left: 58%; opacity: 0.25; animation: drift 32s ease-in-out infinite 4s; }
+  .hp7 { width: 4px; height: 4px; top: 82%; left: 42%; opacity: 0.4; animation: drift 26s ease-in-out infinite 2s; }
+  .hp8 { width: 5px; height: 5px; top: 55%; left: 90%; opacity: 0.35; animation: drift 28s ease-in-out infinite 1s; }
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-8px, -24px); }
+  }
+
+  /* Top decorative rule */
+  .hero-top-rule {
+    position: absolute;
+    top: 100px;
+    left: 64px;
+    right: 64px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    z-index: 2;
+  }
+  .hero-top-rule-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.15), transparent);
+  }
+  .hero-top-rule-label {
+    font-family: 'Geist', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.45);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
   .hero-content {
     position: relative;
-    z-index: 1;
-    max-width: 900px;
+    z-index: 2;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 0 32px;
   }
   .hero-pill {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 7px 16px;
-    background: rgba(255, 255, 255, 0.7);
-    border: 1px solid var(--border);
+    gap: 10px;
+    padding: 9px 20px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 100px;
     font-size: 13px;
     font-weight: 500;
-    color: var(--muted-2);
-    margin-bottom: 28px;
-    backdrop-filter: blur(8px);
+    color: rgba(255, 255, 255, 0.72);
+    margin-bottom: 48px;
+    backdrop-filter: blur(12px);
+    letter-spacing: 0.01em;
   }
   .hero-pill-dot {
-    width: 6px;
-    height: 6px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
-    background: var(--violet-a);
-    box-shadow: 0 0 10px var(--violet-a);
+    background: #8B5CF6;
+    box-shadow: 0 0 12px #8B5CF6, 0 0 24px rgba(139, 92, 246, 0.5);
     animation: pulse 2s ease-in-out infinite;
   }
   @keyframes pulse {
@@ -266,40 +342,120 @@
   }
   .hero-wordmark {
     font-family: 'Instrument Serif', Georgia, serif;
-    font-size: clamp(64px, 9vw, 132px);
-    line-height: 0.95;
+    font-size: clamp(72px, 12vw, 168px);
+    line-height: 0.92;
     letter-spacing: -0.04em;
-    color: var(--ink);
+    color: #FFFFFF;
     margin-bottom: 8px;
   }
   .hero-tagline {
     font-family: 'Instrument Serif', Georgia, serif;
     font-style: italic;
-    font-size: clamp(28px, 4vw, 52px);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    color: var(--muted);
-    margin-bottom: 36px;
+    font-size: clamp(44px, 9vw, 168px);
+    line-height: 0.92;
+    letter-spacing: -0.035em;
+    background: linear-gradient(135deg, #E9D5FF 0%, #C4B5FD 30%, #A78BFA 55%, #F472B6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 56px;
   }
   .hero-sub {
-    font-size: 19px;
-    line-height: 1.55;
-    color: var(--muted-2);
-    max-width: 560px;
-    margin: 0 auto 40px auto;
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(20px, 2.4vw, 32px);
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+    color: rgba(255, 255, 255, 0.65);
+    max-width: 820px;
+    margin: 0 auto 52px auto;
   }
   .hero-ctas {
     display: flex;
     gap: 12px;
     justify-content: center;
-    margin-bottom: 16px;
+    margin-bottom: 22px;
+  }
+  .hero .btn-primary {
+    background: #FFFFFF;
+    color: #0A0A0A;
+    padding: 15px 30px;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 10px;
+  }
+  .hero .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 40px -12px rgba(255, 255, 255, 0.25);
+    background: #FFFFFF;
+  }
+  .hero .btn-secondary {
+    background: rgba(255, 255, 255, 0.04);
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 15px 30px;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 10px;
+    backdrop-filter: blur(12px);
+  }
+  .hero .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.25);
   }
   .hero-meta {
-    font-size: 12px;
-    color: var(--muted);
     font-family: 'Geist Mono', monospace;
-    letter-spacing: 0.02em;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
+
+  /* Hero bottom brand line */
+  .hero-bottom {
+    position: absolute;
+    bottom: 40px;
+    left: 64px;
+    right: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 2;
+  }
+  .hero-url {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .hero-url-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #FFFFFF;
+  }
+  .hero-scroll {
+    font-family: 'Geist', sans-serif;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .hero-scroll-line {
+    width: 24px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  /* Nav must contrast against dark hero */
+  .nav { border-bottom: none; }
+  .hero + * { background: #FFFFFF; }
 
   /* Hero live dashboard mockup */
   .hero-mockup-wrap {
@@ -3210,22 +3366,46 @@
      HERO
      ============================================================ -->
 <section class="hero">
-  <div class="hero-glow"></div>
+  <div class="hero-top-rule">
+    <div class="hero-top-rule-line"></div>
+    <div class="hero-top-rule-label">A new kind of operating system</div>
+    <div class="hero-top-rule-line"></div>
+  </div>
+
+  <span class="hero-particle hp1"></span>
+  <span class="hero-particle hp2"></span>
+  <span class="hero-particle hp3"></span>
+  <span class="hero-particle hp4"></span>
+  <span class="hero-particle hp5"></span>
+  <span class="hero-particle hp6"></span>
+  <span class="hero-particle hp7"></span>
+  <span class="hero-particle hp8"></span>
+
   <div class="hero-content">
     <div class="hero-pill">
       <span class="hero-pill-dot"></span>
-      Built by operators. Powered by Claude.
+      Your OS for clarity.
     </div>
-    <h1 class="hero-wordmark">Klarios</h1>
-    <p class="hero-tagline">Your OS for clarity.</p>
+    <h1 class="hero-wordmark">All signal.</h1>
+    <p class="hero-tagline">No noise.</p>
     <p class="hero-sub">The founder's operating system. Your tools talk, your agents work, your day has focus. Klarios runs Klarios. Now it runs yours.</p>
     <div class="hero-ctas">
       <a href="#register" class="btn-primary">Register your interest →</a>
       <a href="#home-tile" class="btn-secondary">See the product</a>
     </div>
-    <div class="hero-meta">PRIVATE BETA · NO CREDIT CARD · LIVE IN 30 MINUTES</div>
+    <div class="hero-meta">NO CREDIT CARD · LIVE IN 30 MINUTES · CANCEL ANYTIME</div>
   </div>
 
+  <div class="hero-bottom">
+    <div class="hero-url">
+      <span class="hero-url-dot"></span>
+      klarios.io
+    </div>
+    <div class="hero-scroll">
+      <span class="hero-scroll-line"></span>
+      Scroll to explore
+    </div>
+  </div>
 </section>
 
 <!-- ============================================================
